@@ -1,28 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.ComponentModel;
 
 namespace boss.client.win
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
+        private readonly StartMenuPage startMenu = new StartMenuPage();
+
         public MainWindow()
         {
             InitializeComponent();
+            SetContent(new FramePage());
+        }
+
+        private void SetContent(object content)
+        {
+            ContentLayer.Content = content;
+        }
+
+        private void SetPopupContent(object content)
+        {
+            PopupLayer.Content = content;
+        }
+
+        private void PopupStartMenu()
+        {
+            SetPopupContent(startMenu);
+        }
+
+        private void HideStartMenu()
+        {
+            SetPopupContent(null);
+        }
+
+        private void MainWindow_OnClosing(object sender, CancelEventArgs e)
+        {
+            Dialog.ConfirmYesNo(new DialogParameters { Message = "您确定要退出系统吗？", OnNo = () => e.Cancel = true});
         }
     }
 }
