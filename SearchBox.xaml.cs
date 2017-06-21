@@ -1,8 +1,8 @@
 ﻿namespace boss.client.win
 {
-    public partial class StartMenuPageContent
+    public partial class SearchBox
     {
-        public StartMenuPageContent()
+        public SearchBox()
         {
             InitializeComponent();
         }

@@ -4,19 +4,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:win="clr-namespace:boss.client.win"
-    mc:Ignorable="d" 
-    d:DesignHeight="300" d:DesignWidth="300">
-    
-    <Border>
+    mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300"
+    Focusable="True"
+    PreviewKeyDown="StartMenuPage_OnPreviewKeyDown" Loaded="StartMenuPage_OnLoaded">
+
+    <Border Background="{StaticResource FrameBackground}">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
             <win:StartMenuPageHeader Grid.Row="0"/>
-            <win:StartMenuPageContent Grid.Row="1"/>
+            <win:StartMenuPageMenuContent Grid.Row="1"/>
         </Grid>
     </Border>
-    
+
 </UserControl>

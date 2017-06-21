@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.6.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>packages\Autofac.4.6.0\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -55,30 +59,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FramePage.xaml.cs">
-      <DependentUpon>FramePage.xaml</DependentUpon>
+    <Compile Include="ApplicationContext.cs" />
+    <Compile Include="ApplicationEvents.cs" />
+    <Compile Include="IApplicationService.cs" />
+    <Compile Include="MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MenuItem.cs" />
     <Compile Include="Page.cs" />
-    <Compile Include="PageContainer.cs" />
     <Compile Include="PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageTabItem.cs" />
     <Compile Include="ProgressIndicator.xaml.cs">
       <DependentUpon>ProgressIndicator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RemoteApplicationService.cs" />
+    <Compile Include="SearchBox.xaml.cs">
+      <DependentUpon>SearchBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchButton.cs" />
+    <Compile Include="StartButton.cs" />
     <Compile Include="StartMenuPage.xaml.cs">
       <DependentUpon>StartMenuPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StartMenuPageContent.xaml.cs">
-      <DependentUpon>StartMenuPageContent.xaml</DependentUpon>
+    <Compile Include="StartMenuPageMenuContent.xaml.cs">
+      <DependentUpon>StartMenuPageMenuContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="StartMenuPageHeader.xaml.cs">
       <DependentUpon>StartMenuPageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserProfileButton.xaml.cs">
+      <DependentUpon>UserProfileButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WorkbenchPage.xaml.cs">
       <DependentUpon>WorkbenchPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="FramePage.xaml">
+    <Page Include="MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,15 +120,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StartMenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StartMenuPageContent.xaml">
+    <Page Include="StartMenuPageMenuContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StartMenuPageHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserProfileButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -138,6 +163,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

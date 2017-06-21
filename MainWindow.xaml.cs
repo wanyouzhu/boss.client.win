@@ -9,7 +9,23 @@ namespace boss.client.win
         public MainWindow()
         {
             InitializeComponent();
-            SetContent(new FramePage());
+            SetContent(new MainView());
+            InitializeEventHandler();
+        }
+
+        private void InitializeEventHandler()
+        {
+            ApplicationEvents.StartMenuRequested += ApplicationEventsStartMenuRequested;
+        }
+
+        private void ApplicationEventsStartMenuRequested()
+        {
+            SetPopupContent(IsStartMenuPoppedUp() ? null : startMenu);
+        }
+
+        private bool IsStartMenuPoppedUp()
+        {
+            return ReferenceEquals(PopupLayer.Content, startMenu);
         }
 
         private void SetContent(object content)
