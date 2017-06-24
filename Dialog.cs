@@ -1,5 +1,7 @@
 using System;
 using System.Windows;
+using System.Windows.Threading;
+using Autofac;
 
 namespace boss.client.win
 {
@@ -25,6 +27,17 @@ namespace boss.client.win
         private static Window GetOwner()
         {
             return Application.Current?.MainWindow;
+        }
+
+        public static void Error(Exception e)
+        {
+            MessageBox.Show(GetOwner(), GetErrorMessage(e), GetCaption(), MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+        }
+
+        private static string GetErrorMessage(Exception e)
+        {
+            var exception = e as ApplicationException;
+            return exception != null ? exception.Format(ApplicationContext.ComponentContext.Resolve<IMessageService>()) : e.ToString();
         }
     }
 

@@ -1,9 +1,9 @@
 ﻿namespace boss.client.win
 {
-    [Page("000000")]
-    public partial class WorkbenchPage
+    [Page("010001")]
+    public partial class SalesOrderEditor
     {
-        public WorkbenchPage()
+        public SalesOrderEditor()
         {
             InitializeComponent();
         }

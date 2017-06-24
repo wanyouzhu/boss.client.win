@@ -16,6 +16,13 @@ namespace boss.client.win
         private void InitializeEventHandler()
         {
             ApplicationEvents.StartMenuRequested += ApplicationEventsStartMenuRequested;
+            ApplicationEvents.MenuItemSelected += ApplicationEvents_MenuItemSelected;
+        }
+
+        private void ApplicationEvents_MenuItemSelected(MenuItem item, object parameter)
+        {
+            if (!IsStartMenuPoppedUp()) return;
+            ApplicationEvents.OnStartMenuRequested();
         }
 
         private void ApplicationEventsStartMenuRequested()

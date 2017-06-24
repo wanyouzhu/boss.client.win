@@ -60,8 +60,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="ApplicationError.cs" />
     <Compile Include="ApplicationEvents.cs" />
+    <Compile Include="ApplicationException.cs" />
+    <Compile Include="AutofacExtension.cs" />
     <Compile Include="IApplicationService.cs" />
+    <Compile Include="IMessageService.cs" />
+    <Compile Include="IncomImportVoucherEditor.xaml.cs">
+      <DependentUpon>IncomImportVoucherEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -74,11 +81,19 @@
     <Compile Include="ProgressIndicator.xaml.cs">
       <DependentUpon>ProgressIndicator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QueryPage.xaml.cs">
+      <DependentUpon>QueryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RemoteApplicationService.cs" />
+    <Compile Include="ResourceDictionaryMessageService.cs" />
+    <Compile Include="SalesOrderEditor.xaml.cs">
+      <DependentUpon>SalesOrderEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SearchBox.xaml.cs">
       <DependentUpon>SearchBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="SearchButton.cs" />
+    <Compile Include="AutofacAttributes.cs" />
     <Compile Include="StartButton.cs" />
     <Compile Include="StartMenuPage.xaml.cs">
       <DependentUpon>StartMenuPage.xaml</DependentUpon>
@@ -95,6 +110,18 @@
     <Compile Include="WorkbenchPage.xaml.cs">
       <DependentUpon>WorkbenchPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Messages.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Commons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="IncomImportVoucherEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,6 +144,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProgressIndicator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QueryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SalesOrderEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

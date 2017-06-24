@@ -4,7 +4,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:win="clr-namespace:boss.client.win"
-    mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+    mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300" Loaded="MainView_OnLoaded">
 
     <UserControl.Resources>
         <SolidColorBrush x:Key="TabItemHilightedBackgroundBrush">SteelBlue</SolidColorBrush>
@@ -79,9 +79,9 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            
+
                             <ContentPresenter ContentSource="SelectedContent" Grid.Row="1"/>
-                            
+
                             <Border Grid.Row="0" Style="{StaticResource HeaderBackgroundStyle}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -108,7 +108,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-
+    
     <TabControl Style="{StaticResource PageTabStyle}" ItemsSource="{Binding Pages}" SelectedItem="{Binding Path=ActiveItem,Mode=TwoWay}"/>
 
 </UserControl>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Autofac;
 
 namespace boss.client.win
@@ -12,7 +13,7 @@ namespace boss.client.win
         private static IComponentContext CreateContainer()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<RemoteApplicationService>().As<IApplicationService>().SingleInstance();
+            builder.RegisterAllTypes();
             return builder.Build();
         }
     }

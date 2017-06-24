@@ -1,9 +1,9 @@
 ﻿namespace boss.client.win
 {
-    [Page("000000")]
-    public partial class WorkbenchPage
+    [Page("__QUERY__")]
+    public partial class QueryPage
     {
-        public WorkbenchPage()
+        public QueryPage()
         {
             InitializeComponent();
         }

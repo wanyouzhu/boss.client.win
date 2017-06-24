@@ -10,13 +10,27 @@ namespace boss.client.win
             IsClosable = true;
         }
 
+        public PageTabItem(MenuItem menuItem, object parameter) : this()
+        {
+            Type = menuItem.Type;
+            Code = menuItem.Code;
+            Title = menuItem.Name;
+            Header = menuItem.Name;
+            Parameter = parameter;
+        }
+
+        public string Type
+        {
+            get;
+        }
+
         public static readonly DependencyProperty CodeProperty = DependencyProperty.Register(
             "Code", typeof(string), typeof(PageTabItem), new PropertyMetadata(default(string)));
 
         public string Code
         {
             get { return (string)GetValue(CodeProperty); }
-            set { SetValue(CodeProperty, value); }
+            private set { SetValue(CodeProperty, value); }
         }
 
         public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
@@ -25,7 +39,7 @@ namespace boss.client.win
         public string Title
         {
             get { return (string) GetValue(TitleProperty); }
-            set { SetValue(TitleProperty, value); }
+            private set { SetValue(TitleProperty, value); }
         }
 
         public static readonly DependencyProperty IsClosableProperty = DependencyProperty.Register(
@@ -34,7 +48,17 @@ namespace boss.client.win
         public bool IsClosable
         {
             get { return (bool)GetValue(IsClosableProperty); }
-            set { SetValue(IsClosableProperty, value); }
+            private set { SetValue(IsClosableProperty, value); }
+        }
+
+        public object Parameter
+        {
+            get;
+        }
+
+        public bool IsBelongTo(MenuItem menuItem, object parameter)
+        {
+            return string.Equals(Type, menuItem.Type) && string.Equals(Code, menuItem.Code) && Equals(Parameter, parameter);
         }
     }
 }

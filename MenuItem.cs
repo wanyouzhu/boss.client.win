@@ -8,5 +8,6 @@ namespace boss.client.win
         public string Name { get; set; }
         public string Type { get; set; }
         public IEnumerable<MenuItem> Items { get; set; }
+        public string Icon { get; set; }
     }
 }

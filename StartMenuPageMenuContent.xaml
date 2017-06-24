@@ -48,43 +48,41 @@
             </Setter>
         </Style>
 
+        <Style x:Key="MenuItemContainerListViewItemStyle" TargetType="ListViewItem">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border Background="Transparent">
+                            <Border Width="80" Background="{TemplateBinding Background}" Margin="{TemplateBinding Margin}">
+                                <ContentPresenter/>
+                            </Border>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#51C6E2FF"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#CDC6E2FF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="MenuItemBoxStyle" TargetType="ListView">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="BorderBrush" Value="{x:Null}"/>
             <Setter Property="Padding" Value="8"/>
             <Setter Property="Foreground" Value="{StaticResource DefaultForground}"/>
+            <Setter Property="ItemContainerStyle" Value="{StaticResource MenuItemContainerListViewItemStyle}"/>
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal" Width="{Binding (FrameworkElement.ActualWidth), RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}" />
                     </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="ItemContainerStyle">
-                <Setter.Value>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Margin" Value="2"/>
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ListViewItem">
-                                    <Border Background="Transparent">
-                                        <Border Name="border" Width="80" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}">
-                                            <ContentPresenter/>
-                                        </Border>
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#51C6E2FF"/>
-                                        </Trigger>
-                                        <Trigger Property="IsSelected" Value="True">
-                                            <Setter Property="Background" Value="#CDC6E2FF"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
                 </Setter.Value>
             </Setter>
         </Style>
@@ -105,10 +103,10 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <ListView Name="ItemBox" ItemsSource="{Binding ElementName=GroupBox,Path=SelectedItem.Items}" Style="{StaticResource MenuItemBoxStyle}" Grid.Column="1">
+            <ListView Name="ItemBox" ItemsSource="{Binding ElementName=GroupBox,Path=SelectedItem.Items}" Style="{StaticResource MenuItemBoxStyle}" KeyDown="ItemBox_OnKeyDown" Grid.Column="1">
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="win:MenuItem">
-                        <Grid>
+                        <Grid Background="Transparent" PreviewMouseLeftButtonDown="MenuItem_OnPreviewMouseLeftButtonDown">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
