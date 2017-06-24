@@ -18,5 +18,10 @@ namespace boss.client.win
             get { return (string) GetValue(TitleProperty); }
             set { SetValue(TitleProperty, value); }
         }
+
+        private void Close_OnClick(object sender, RoutedEventArgs e)
+        {
+            ApplicationEvents.OnCloseActivePageRequested();
+        }
     }
 }

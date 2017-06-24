@@ -22,5 +22,12 @@
         {
             MenuItemSelected?.Invoke(item, parameter);
         }
+
+        public delegate void CloseActivePageRequestedEvent();
+        public static event CloseActivePageRequestedEvent CloseActivePageRequested;
+        public static void OnCloseActivePageRequested()
+        {
+            CloseActivePageRequested?.Invoke();
+        }
     }
 }

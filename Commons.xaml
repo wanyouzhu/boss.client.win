@@ -98,5 +98,31 @@
         </Border>
     </ControlTemplate>
 
+    <Style x:Key="ApplicationTabItemCloseButtonStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Margin="{TemplateBinding Margin}" Padding="5" Background="Transparent">
+                        <Border Name="border" Height="10" Width="10">
+                            <Path Name="path"  Data="M0,0 10,10 M0,10 10,0" StrokeThickness="1" Stroke="{TemplateBinding Foreground}"/>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="0.9" ScaleY="0.9" CenterX="5" CenterY="5"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="path" Property="StrokeThickness" Value="2"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

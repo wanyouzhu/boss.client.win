@@ -23,7 +23,14 @@ namespace boss.client.win
 
         private void InitializeEventHandlers()
         {
-            ApplicationEvents.MenuItemSelected += ApplicationEvents_MenuItemSelected; ;
+            ApplicationEvents.MenuItemSelected += ApplicationEvents_MenuItemSelected;
+            ApplicationEvents.CloseActivePageRequested += ApplicationEvents_CloseActivePageRequested;
+        }
+
+        private void ApplicationEvents_CloseActivePageRequested()
+        {
+            if (ActiveItem == null) return;
+            Pages.Remove(ActiveItem);
         }
 
         private void ApplicationEvents_MenuItemSelected(MenuItem item, object parameter)
@@ -50,7 +57,7 @@ namespace boss.client.win
             return item;
         }
 
-        private PageTabItem CreateNewItem(MenuItem menuItem, object parameter)
+        private static PageTabItem CreateNewItem(MenuItem menuItem, object parameter)
         {
             var page = CreatePage(menuItem, parameter);
             page.Title = menuItem.Name;

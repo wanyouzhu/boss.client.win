@@ -48,7 +48,7 @@ namespace boss.client.win
         public bool IsClosable
         {
             get { return (bool)GetValue(IsClosableProperty); }
-            private set { SetValue(IsClosableProperty, value); }
+            set { SetValue(IsClosableProperty, value); }
         }
 
         public object Parameter
