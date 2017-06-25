@@ -10,15 +10,14 @@
         <SolidColorBrush x:Key="TabItemHilightedBackgroundBrush">SteelBlue</SolidColorBrush>
 
         <Style x:Key="PageTabItemStyle" TargetType="win:PageTabItem">
-            <Setter Property="BorderBrush" Value="{x:Null}"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{StaticResource DefaultForground}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="win:PageTabItem">
-                        <Border Padding="0,8" Background="Transparent">
+                        <Border Padding="0,8" Background="{TemplateBinding Background}" Height="56" Margin="0,0,1,0">
                             <ContentControl Name="Header">
-                                <Grid>
+                                <Grid VerticalAlignment="Center">
                                     <ContentPresenter Margin="6,2" Grid.Column="0" ContentSource="Header" HorizontalAlignment="Center"/>
                                     <Border Name="GapLine" Grid.Column="0" Visibility="Hidden" Height="2" Margin="6,0" VerticalAlignment="Bottom" Background="{StaticResource TabItemHilightedBackgroundBrush}"/>
                                 </Grid>
@@ -26,12 +25,10 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="GapLine" Property="Height" Value="1"/>
-                                <Setter TargetName="GapLine" Property="Visibility" Value="Visible"/>
+                                <Setter Property="Background" Value="{StaticResource HeaderItemMouseOverBackground}"/>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="GapLine" Property="Height" Value="2"/>
-                                <Setter TargetName="GapLine" Property="Visibility" Value="Visible"/>
+                                <Setter Property="Background" Value="{StaticResource HeaderItemMouseOverBackground}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -61,13 +58,11 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                        <win:StartButton Margin="0,0,-8,0"/>
-                                        <Border Style="{StaticResource HeaderItemSeperatorStyle}"/>
-                                        <TextBlock Text="{StaticResource ApplicationName}" Style="{StaticResource HeaderTitleStyle}"/>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="0,0,1,0">
+                                        <win:StartButton/>
                                         <Border Style="{StaticResource HeaderItemSeperatorStyle}"/>
                                     </StackPanel>
-                                    <TabPanel x:Name="tabPanel" IsItemsHost="true" Grid.Column="1" VerticalAlignment="Center"/>
+                                    <TabPanel x:Name="tabPanel" IsItemsHost="true" VerticalAlignment="Center" Grid.Column="1"/>
                                     <StackPanel Orientation="Horizontal" Grid.Column="2">
                                         <win:SearchButton/>
                                         <win:UserProfileButton Margin="12,0"/>

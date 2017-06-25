@@ -7,8 +7,12 @@
     <system:String x:Key="ApplicationName">事成业务运营支持系统</system:String>
 
     <SolidColorBrush x:Key="DefaultForground" Color="#515151"/>
-
     <SolidColorBrush x:Key="FrameBackground" Color="#FFF6F6F6"/>
+    <SolidColorBrush x:Key="HeaderItemMouseOverBackground" Color="#ECF7FB"/>
+    <SolidColorBrush x:Key="HeaderItemPressedBackground" Color="#E3EEF2"/>
+    <SolidColorBrush x:Key="PageHeaderBackground" Color="#B0DFFD"/>
+    <SolidColorBrush x:Key="ToolbarItemMouseOverBackground" Color="#A9D6F4"/>
+    <SolidColorBrush x:Key="ToolbarItemPressedBackground" Color="#A5D1EE"/>
 
     <Style x:Key="WindowStyle" TargetType="Window">
         <Setter Property="UseLayoutRounding" Value="True"/>
@@ -16,6 +20,18 @@
         <Setter Property="FontFamily" Value="Microsoft Yahei"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Foreground" Value="{StaticResource DefaultForground}"/>
+    </Style>
+
+    <Style x:Key="HeaderTitleStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="23" />
+        <Setter Property="Foreground" Value="{StaticResource DefaultForground}"/>
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,-1,8,1"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="3" Direction="315" ShadowDepth="3" Opacity="0.20" Color="Black"/>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="local:SearchButton">
@@ -38,25 +54,27 @@
     </Style>
 
     <Style TargetType="local:StartButton">
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:StartButton">
-                    <Border Width="56" Height="56" Background="Transparent" Padding="0,-1,0,1">
-                        <Path Stroke="#FF888888" StrokeThickness="4" Data="M0,2 L4,2 M8,2 L32,2 M0,10 L4,10 M8,10 L32,10 M0,18 L4,18 M8,18 L32,18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border Background="{TemplateBinding Background}" Margin="0,0,1,0">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="56" Height="56">
+                                <Path Stroke="#FF888888" StrokeThickness="4" Data="M0,2 L4,2 M8,2 L32,2 M0,10 L4,10 M8,10 L32,10 M0,18 L4,18 M8,18 L32,18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <TextBlock Text="{StaticResource ApplicationName}" Style="{StaticResource HeaderTitleStyle}"/>
+                        </StackPanel>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource HeaderItemMouseOverBackground}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource HeaderItemPressedBackground}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="HeaderTitleStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="23" />
-        <Setter Property="Foreground" Value="{StaticResource DefaultForground}"/>
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Margin" Value="4,-2,4,2"/>
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect BlurRadius="3" Direction="315" ShadowDepth="3" Opacity="0.20" Color="Black"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -73,7 +91,7 @@
     <Style x:Key="HeaderItemSeperatorStyle" TargetType="Border">
         <Setter Property="Background" Value="LightGray"/>
         <Setter Property="Width" Value="1"/>
-        <Setter Property="Margin" Value="8,12"/>
+        <Setter Property="Margin" Value="1,12"/>
     </Style>
 
     <Style x:Key="PageFrameStyle" TargetType="Border">
@@ -103,7 +121,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Margin="{TemplateBinding Margin}" Padding="5" Background="Transparent">
+                    <Border Margin="{TemplateBinding Margin}" Width="32" Height="32" Background="Transparent">
                         <Border Name="border" Height="10" Width="10">
                             <Path Name="path"  Data="M0,0 10,10 M0,10 10,0" StrokeThickness="1" Stroke="{TemplateBinding Foreground}"/>
                         </Border>

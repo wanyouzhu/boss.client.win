@@ -16,7 +16,10 @@ namespace boss.client.win
                     Code = "010000",
                     Name = "我的收藏",
                     Type = "01",
-                    Items = Enumerable.Range(1, 12).Select(i => new MenuItem {Name = $"菜单项 - {i:00}", Type = "88889999"})
+                    Items = new []
+                    {
+                        new MenuItem { Name = "我的工作台", Code = "000000", Items = new MenuItem [0], Type = "02"},
+                    }
                 },
                 new MenuItem
                 {

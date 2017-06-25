@@ -11,33 +11,25 @@
         <Style x:Key="MenuGroupBoxStyle" TargetType="ListBox">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="BorderBrush" Value="{x:Null}"/>
-            <Setter Property="Background" Value="#C6E2FF"/>
+            <Setter Property="Padding" Value="-1"/>
+            <Setter Property="Background" Value="{StaticResource PageHeaderBackground}"/>
             <Setter Property="Foreground" Value="{StaticResource DefaultForground}"/>
             <Setter Property="ItemContainerStyle">
                 <Setter.Value>
                     <Style TargetType="ListBoxItem">
+                        <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="ListBoxItem">
-                                    <Border Background="Transparent" Padding="8,8">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="32"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <ContentPresenter HorizontalAlignment="Right" Grid.Column="1"/>
-                                            <Path Name="Indicator" Fill="SteelBlue" Stroke="SteelBlue" StrokeThickness="1" Data="M0,8 L10,4 L10,12 L0,8" Grid.Column="2" Margin="8,0,0,0" Visibility="Hidden"/>
-                                        </Grid>
+                                    <Border Background="{TemplateBinding Background}" Padding="32,8,16,8">
+                                        <ContentPresenter HorizontalAlignment="Right"/>
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="Indicator" Property="Visibility" Value="Visible"/>
-                                            <Setter TargetName="Indicator" Property="Fill" Value="Transparent"/>
+                                            <Setter Property="Background" Value="{StaticResource ToolbarItemMouseOverBackground}"/>
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="Indicator" Property="Visibility" Value="Visible"/>
-                                            <Setter TargetName="Indicator" Property="Fill" Value="SteelBlue"/>
+                                            <Setter Property="Background" Value="{StaticResource ToolbarItemPressedBackground}"/>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -61,10 +53,10 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#51C6E2FF"/>
+                                <Setter Property="Background" Value="{StaticResource HeaderItemMouseOverBackground}"/>
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="#CDC6E2FF"/>
+                                <Setter Property="Background" Value="{StaticResource HeaderItemPressedBackground}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

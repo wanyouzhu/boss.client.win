@@ -15,11 +15,11 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <win:StartButton Margin="0,0,-8,0"/>
+                <win:StartButton/>
                 <Border Style="{StaticResource HeaderItemSeperatorStyle}"/>
-                <TextBlock Text="{StaticResource ApplicationName}" Style="{StaticResource HeaderTitleStyle}"/>
-                <Border Style="{StaticResource HeaderItemSeperatorStyle}"/>
-                <TextBlock Text="开始" FontFamily="Microsoft Yahei" FontSize="18" VerticalAlignment="Center"/>
+                <Border Background="{StaticResource HeaderItemMouseOverBackground}" Margin="1,0" Padding="8,0">
+                    <TextBlock Text="开始" FontFamily="Microsoft Yahei" FontSize="18" VerticalAlignment="Center"/>
+                </Border>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="2" Margin="16,0,0,0">
                 <win:SearchBox VerticalAlignment="Center" Width="380" HorizontalAlignment="Right"/>

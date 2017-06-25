@@ -27,7 +27,14 @@ namespace boss.client.win
 
         private void ApplicationEventsStartMenuRequested()
         {
-            SetPopupContent(IsStartMenuPoppedUp() ? null : startMenu);
+            if (IsStartMenuPoppedUp())
+            {
+                HideStartMenu();
+            }
+            else
+            {
+                PopupStartMenu();
+            }
         }
 
         private bool IsStartMenuPoppedUp()
@@ -48,10 +55,12 @@ namespace boss.client.win
         private void PopupStartMenu()
         {
             SetPopupContent(startMenu);
+            ContentLayer.IsEnabled = false;
         }
 
         private void HideStartMenu()
         {
+            ContentLayer.IsEnabled = true;
             SetPopupContent(null);
         }
 
