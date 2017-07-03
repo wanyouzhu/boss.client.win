@@ -103,7 +103,9 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="⌘" FontSize="36" Width="48" Height="48" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
+                            <Border Margin="0,8,0,0" Width="48" Height="48" BorderThickness="0" BorderBrush="#64646D" CornerRadius="8" Grid.Row="0">
+                                <TextBlock Text="{Binding Icon}" Style="{StaticResource FontAwesome}" FontSize="36" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
                             <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Margin="4" Grid.Row="1"/>
                         </Grid>
                     </DataTemplate>

@@ -3,6 +3,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
+    <system:String x:Key="message.command.refresh">刷新(_R)</system:String>
+    <system:String x:Key="message.command.reset">重置(_S)</system:String>
+    <system:String x:Key="message.command.export">导出(_E)</system:String>
+    
+    <system:String x:Key="message.label.tail">：</system:String>
+
     <system:String x:Key="message.system-error">非常抱歉，由于系统发生严重错误，您的请求未完成，请将下面的信息反馈给开发商以帮助其迅速定位问题：</system:String>
     <system:String x:Key="message.unknown-menu-type">未知的菜单类型‘{0}’</system:String>
     <system:String x:Key="message.unimplemented-page-resolved">无法解析的菜单项‘{0}’</system:String>

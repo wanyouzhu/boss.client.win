@@ -60,8 +60,12 @@ namespace boss.client.win
         private static PageTabItem CreateNewItem(MenuItem menuItem, object parameter)
         {
             var page = CreatePage(menuItem, parameter);
+            page.Code = menuItem.Code;
             page.Title = menuItem.Name;
-            return new PageTabItem(menuItem, parameter) { Content = page };
+            page.Icon = menuItem.Icon;
+            var result = new PageTabItem(menuItem, parameter) { Content = page };
+            result.CommandBindings.AddRange(page.CommandBindings);
+            return result;
         }
 
         private static Page CreatePage(MenuItem menuItem, object parameter)
@@ -82,7 +86,7 @@ namespace boss.client.win
 
         private static Page CreateQueryPage(MenuItem menuItem, object parameter)
         {
-            return ComponentContext.ResolvePage("__QUERY__", parameter);
+            return ComponentContext.ResolvePage("__QUERY__", new { queryCode = menuItem.Code, parameter });
         }
 
         private static Page CreateChartPage(MenuItem menuItem, object parameter)

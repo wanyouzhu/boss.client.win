@@ -64,11 +64,17 @@
     <Compile Include="ApplicationEvents.cs" />
     <Compile Include="ApplicationException.cs" />
     <Compile Include="AutofacExtension.cs" />
+    <Compile Include="DynamicInputForm.xaml.cs">
+      <DependentUpon>DynamicInputForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormPanel.cs" />
     <Compile Include="IApplicationService.cs" />
     <Compile Include="IMessageService.cs" />
     <Compile Include="IncomImportVoucherEditor.xaml.cs">
       <DependentUpon>IncomImportVoucherEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InputBox.cs" />
+    <Compile Include="IQueryService.cs" />
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -78,13 +84,19 @@
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageTabItem.cs" />
+    <Compile Include="Pagination.cs" />
+    <Compile Include="ParameterTypes.cs" />
     <Compile Include="ProgressIndicator.xaml.cs">
       <DependentUpon>ProgressIndicator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QueryMeta.cs" />
     <Compile Include="QueryPage.xaml.cs">
       <DependentUpon>QueryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QueryResult.cs" />
+    <Compile Include="QueryViewModel.cs" />
     <Compile Include="RemoteApplicationService.cs" />
+    <Compile Include="RemoteQueryService.cs" />
     <Compile Include="ResourceDictionaryMessageService.cs" />
     <Compile Include="SalesOrderEditor.xaml.cs">
       <DependentUpon>SalesOrderEditor.xaml</DependentUpon>
@@ -104,12 +116,22 @@
     <Compile Include="StartMenuPageHeader.xaml.cs">
       <DependentUpon>StartMenuPageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ToolBarButton.cs" />
+    <Compile Include="UnixEpochConvierter.cs" />
     <Compile Include="UserProfileButton.xaml.cs">
       <DependentUpon>UserProfileButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkbenchPage.xaml.cs">
       <DependentUpon>WorkbenchPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DynamicInputForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Messages.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -204,6 +226,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\fontawesome.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

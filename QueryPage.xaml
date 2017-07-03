@@ -5,11 +5,64 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:boss.client.win"
-    mc:Ignorable="d" 
+    mc:Ignorable="d" Initialized="QueryPage_OnInitialized"
     Template="{StaticResource StandardPageTemplate}"
     d:DesignHeight="300" d:DesignWidth="300">
     
-    <Grid>
-    </Grid>
+    <local:Page.Resources>
+        <RoutedCommand x:Key="Refresh"/>
+        <RoutedCommand x:Key="Reset"/>
+        <RoutedCommand x:Key="Export"/>
+        <RoutedCommand x:Key="GotoFirstPage"/>
+        <RoutedCommand x:Key="GotoPreviousSection"/>
+        <RoutedCommand x:Key="GotoPreviousPage"/>
+        <RoutedCommand x:Key="GotoNextPage"/>
+        <RoutedCommand x:Key="GotoNextSection"/>
+        <RoutedCommand x:Key="GotoLastPage"/>
+        <RoutedCommand x:Key="GotoPage"/>
+    </local:Page.Resources>
     
+    <local:Page.CommandBindings>
+        <CommandBinding Command="{StaticResource Refresh}" Executed="CommandBinding_OnRefreshExecuted"/>
+        <CommandBinding Command="{StaticResource Reset}" Executed="CommandBinding_OnResetExecuted"/>
+        <CommandBinding Command="{StaticResource Export}" Executed="CommandBinding_OnExportExecuted"/>
+    </local:Page.CommandBindings>
+
+    <local:Page.ToolBar>
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="ToolBar" BasedOn="{StaticResource ToolBarStyle}"/>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ToolBar Band ="1" Grid.Column="0">
+                <local:ToolBarButton IconText="&#xf021;" Content="{StaticResource message.command.refresh}" Command="{StaticResource Refresh}"/>
+                <local:ToolBarButton IconText="&#xf122;" Content="{StaticResource message.command.reset}" Command="{StaticResource Reset}"/>
+                <local:ToolBarButton IconText="&#xf045;" Content="{StaticResource message.command.export}" Command="{StaticResource Export}"/>
+            </ToolBar>
+            <ToolBar Band="2" Grid.Column="1">
+                <local:ToolBarButton IconText="&#xf049;" Command="{StaticResource GotoFirstPage}"/>
+                <local:ToolBarButton IconText="&#xf04a;" Command="{StaticResource GotoPreviousSection}"/>
+                <local:ToolBarButton IconText="&#xf053;" Command="{StaticResource GotoPreviousPage}"/>
+                <local:ToolBarButton Command="{StaticResource GotoPage}">
+                    <TextBlock Text="1 / 286" Margin="0,-1,0,1"/>
+                </local:ToolBarButton>
+                <local:ToolBarButton IconText="&#xf054;" Command="{StaticResource GotoNextPage}"/>
+                <local:ToolBarButton IconText="&#xf04e;" Command="{StaticResource GotoNextSection}"/>
+                <local:ToolBarButton IconText="&#xf050;" Command="{StaticResource GotoLastPage}"/>
+            </ToolBar>
+        </Grid>
+    </local:Page.ToolBar>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <local:DynamicInputForm x:Name="inputForm" Grid.Row="0"/>
+        <DataGrid x:Name="gridView" Margin="16,0,16,16" Style="{StaticResource DataGridStyle}" ItemsSource="{Binding QueryResult.data}" Grid.Row="1"/>
+    </Grid>
+
 </local:Page>

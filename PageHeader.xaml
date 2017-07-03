@@ -11,13 +11,13 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="⌘" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="22" Margin="2,0" Grid.Column="0"/>
-            <TextBlock Text="{Binding Title}" Foreground="{StaticResource DefaultForground}" VerticalAlignment="Center" FontSize="16" Grid.Column="1"/>
-            <Button Style="{StaticResource ApplicationTabItemCloseButtonStyle}" Click="Close_OnClick" Grid.Column="4"/>
+            <TextBlock Text="{Binding Icon}" Style="{StaticResource FontAwesome}" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="22" Margin="8,0" Grid.Column="0"/>
+            <TextBlock Text="{Binding Title}" Foreground="{StaticResource DefaultForground}" VerticalAlignment="Center" FontSize="16" Margin="0,0,8,0" Grid.Column="1"/>
+            <ContentControl Content="{Binding ToolBar}" Focusable="False" Grid.Column="2"/>
+            <Button Style="{StaticResource ApplicationTabItemCloseButtonStyle}" Click="Close_OnClick" Grid.Column="3"/>
         </Grid>
     </Border>
 

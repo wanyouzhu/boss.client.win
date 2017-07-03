@@ -12,10 +12,11 @@
         <Style x:Key="PageTabItemStyle" TargetType="win:PageTabItem">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{StaticResource DefaultForground}"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="win:PageTabItem">
-                        <Border Padding="0,8" Background="{TemplateBinding Background}" Height="56" Margin="0,0,1,0">
+                        <Border Padding="0,8" Background="{TemplateBinding Background}" Height="56" Margin="0,0,1,0" FocusManager.IsFocusScope="True">
                             <ContentControl Name="Header">
                                 <Grid VerticalAlignment="Center">
                                     <ContentPresenter Margin="6,2" Grid.Column="0" ContentSource="Header" HorizontalAlignment="Center"/>
@@ -76,6 +77,6 @@
         </Style>
     </UserControl.Resources>
     
-    <TabControl Style="{StaticResource PageTabStyle}" ItemsSource="{Binding Pages}" SelectedItem="{Binding Path=ActiveItem,Mode=TwoWay}"/>
+    <TabControl x:Name="tabControl" Style="{StaticResource PageTabStyle}" ItemsSource="{Binding Pages}" SelectedItem="{Binding Path=ActiveItem,Mode=TwoWay}"/>
 
 </UserControl>
