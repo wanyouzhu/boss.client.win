@@ -1,9 +1,8 @@
 using System;
 using System.Windows;
-using System.Windows.Threading;
 using Autofac;
 
-namespace boss.client.win
+namespace boss.client.win.common.controls
 {
     public class Dialog
     {

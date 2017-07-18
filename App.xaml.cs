@@ -1,4 +1,5 @@
 ﻿using System.Windows.Threading;
+using boss.client.win.common.controls;
 
 namespace boss.client.win
 {

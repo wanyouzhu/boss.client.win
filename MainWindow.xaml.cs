@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using boss.client.win.common.controls;
 
 namespace boss.client.win
 {

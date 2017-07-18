@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using Autofac;
 using static boss.client.win.ApplicationContext;
 
@@ -65,6 +66,7 @@ namespace boss.client.win
             page.Icon = menuItem.Icon;
             var result = new PageTabItem(menuItem, parameter) { Content = page };
             result.CommandBindings.AddRange(page.CommandBindings);
+            result.InputBindings.AddRange(page.InputBindings);
             return result;
         }
 

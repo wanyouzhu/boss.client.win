@@ -9,6 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Messages.xaml"/>
                 <ResourceDictionary Source="Commons.xaml"/>
+                <ResourceDictionary Source="ScrollBarStyle.xaml"/>
                 <ResourceDictionary Source="DataGrid.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

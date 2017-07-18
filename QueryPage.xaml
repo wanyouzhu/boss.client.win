@@ -5,7 +5,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:boss.client.win"
-    mc:Ignorable="d" Initialized="QueryPage_OnInitialized"
+    mc:Ignorable="d"
+    Initialized="QueryPage_OnInitialized" Loaded="QueryPage_OnLoaded"
     Template="{StaticResource StandardPageTemplate}"
     d:DesignHeight="300" d:DesignWidth="300">
     
@@ -27,6 +28,10 @@
         <CommandBinding Command="{StaticResource Reset}" Executed="CommandBinding_OnResetExecuted"/>
         <CommandBinding Command="{StaticResource Export}" Executed="CommandBinding_OnExportExecuted"/>
     </local:Page.CommandBindings>
+    
+    <local:Page.InputBindings>
+        <KeyBinding Key="F5" Command="{StaticResource Refresh}"/>
+    </local:Page.InputBindings>
 
     <local:Page.ToolBar>
         <Grid>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Autofac;
 
 namespace boss.client.win
@@ -22,16 +21,17 @@ namespace boss.client.win
         private static void RegisterAllServices(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
-                .Where(x => x.GetCustomAttribute<ServiceAttribute>() != null)
+                .Where(x => x.GetCustomAttributes(typeof(ServiceAttribute), false).Length > 0)
                 .AsImplementedInterfaces()
+                .AsSelf()
                 .InstancePerDependency();
         }
 
         private static void RegisterAllPages(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
-                .Where(x => x.GetCustomAttribute<PageAttribute>() != null)
-                .Named<Page>(x => GetPageFullName(x.GetCustomAttribute<PageAttribute>().Code))
+                .Where(x => x.GetCustomAttributes(typeof(PageAttribute), false).Length > 0)
+                .Named<Page>(x => GetPageFullName(((PageAttribute)x.GetCustomAttributes(typeof(PageAttribute), false)[0]).Code))
                 .InstancePerDependency();
         }
 

@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>boss.client.win</RootNamespace>
     <AssemblyName>boss.client.win</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -24,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,10 +35,19 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.6.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>packages\Autofac.4.6.0\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\RestSharp.105.2.3\lib\net4-client\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -59,21 +70,38 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AbstractQueryViewModel.cs" />
     <Compile Include="ApplicationContext.cs" />
     <Compile Include="ApplicationError.cs" />
     <Compile Include="ApplicationEvents.cs" />
     <Compile Include="ApplicationException.cs" />
     <Compile Include="AutofacExtension.cs" />
+    <Compile Include="common\controls\ApplicationExtension.cs" />
+    <Compile Include="common\controls\DateInputBox.cs" />
+    <Compile Include="common\controls\DateTimeInputBox.cs" />
+    <Compile Include="common\controls\Dialog.cs" />
+    <Compile Include="common\controls\FormPanel.cs" />
+    <Compile Include="common\controls\InputBox.cs" />
+    <Compile Include="common\controls\NumberInputBox.cs" />
+    <Compile Include="common\controls\ObjectBrowser.xaml.cs">
+      <DependentUpon>ObjectBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="common\controls\ObjectBrowserViewModel.cs" />
+    <Compile Include="common\controls\ObjectSelectorBox.cs" />
+    <Compile Include="common\controls\TextBasedInputBox.cs" />
+    <Compile Include="common\controls\TextInputBox.cs" />
+    <Compile Include="DateTimeExtension.cs" />
+    <Compile Include="DefaultCookieContainer.cs" />
     <Compile Include="DynamicInputForm.xaml.cs">
       <DependentUpon>DynamicInputForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FormPanel.cs" />
+    <Compile Include="FieldTypes.cs" />
     <Compile Include="IApplicationService.cs" />
+    <Compile Include="IdentityField.cs" />
     <Compile Include="IMessageService.cs" />
     <Compile Include="IncomImportVoucherEditor.xaml.cs">
       <DependentUpon>IncomImportVoucherEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="InputBox.cs" />
     <Compile Include="IQueryService.cs" />
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -89,6 +117,7 @@
     <Compile Include="ProgressIndicator.xaml.cs">
       <DependentUpon>ProgressIndicator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Query.cs" />
     <Compile Include="QueryMeta.cs" />
     <Compile Include="QueryPage.xaml.cs">
       <DependentUpon>QueryPage.xaml</DependentUpon>
@@ -98,6 +127,11 @@
     <Compile Include="RemoteApplicationService.cs" />
     <Compile Include="RemoteQueryService.cs" />
     <Compile Include="ResourceDictionaryMessageService.cs" />
+    <Compile Include="RestClientExtension.cs" />
+    <Compile Include="RestException.cs" />
+    <Compile Include="RestJsonSerializer.cs" />
+    <Compile Include="RestService.cs" />
+    <Compile Include="RestTemplate.cs" />
     <Compile Include="SalesOrderEditor.xaml.cs">
       <DependentUpon>SalesOrderEditor.xaml</DependentUpon>
     </Compile>
@@ -106,6 +140,8 @@
     </Compile>
     <Compile Include="SearchButton.cs" />
     <Compile Include="AutofacAttributes.cs" />
+    <Compile Include="SingleResult.cs" />
+    <Compile Include="SortOrder.cs" />
     <Compile Include="StartButton.cs" />
     <Compile Include="StartMenuPage.xaml.cs">
       <DependentUpon>StartMenuPage.xaml</DependentUpon>
@@ -117,13 +153,17 @@
       <DependentUpon>StartMenuPageHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="ToolBarButton.cs" />
-    <Compile Include="UnixEpochConvierter.cs" />
+    <Compile Include="DateTimeConvierter.cs" />
     <Compile Include="UserProfileButton.xaml.cs">
       <DependentUpon>UserProfileButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkbenchPage.xaml.cs">
       <DependentUpon>WorkbenchPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="common\controls\ObjectBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DataGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -156,7 +196,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Dialog.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -176,6 +215,10 @@
     <Page Include="SalesOrderEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScrollBarStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SearchBox.xaml">
       <SubType>Designer</SubType>
@@ -231,6 +274,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

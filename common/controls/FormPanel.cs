@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace boss.client.win
+namespace boss.client.win.common.controls
 {
     public class FormPanel : Panel
     {

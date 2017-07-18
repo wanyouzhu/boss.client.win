@@ -7,6 +7,5 @@
         public const string Number = "03";
         public const string DateTime = "04";
         public const string Date = "05";
-        public const string Time = "06";
     }
 }

@@ -2,10 +2,11 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <SolidColorBrush x:Key="DataGridGridLineColor" Color="#B9E7FF"/>
+
     <ControlTemplate x:Key="DataGridColumnHeaderTemplate" TargetType="DataGridColumnHeader" >
         <Grid x:Name="contentHost" Background="#EAEAF8">
-            <Rectangle Fill="LightSkyBlue" Height="1" VerticalAlignment="Bottom"/>
-            <Grid>
+            <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
@@ -13,7 +14,7 @@
                 <ContentPresenter Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="4,6"/>
                 <TextBlock x:Name="sortFlag" Grid.Column="1" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" Margin="0,0,4,0"/>
             </Grid>
-            <Rectangle x:Name="vline" Fill="LightSkyBlue" Width="1" HorizontalAlignment="Right"/>
+            <Rectangle x:Name="vline" Fill="#AADEFA" Width="1" HorizontalAlignment="Right"/>
             <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Width="3" Background="Transparent" BorderThickness="0" Cursor="SizeWE">
                 <Thumb.Template>
                     <ControlTemplate TargetType="Thumb">
@@ -43,10 +44,24 @@
 
     <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
         <Setter Property="Padding" Value="2,4"/>
-        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Template" Value="{StaticResource DataGridColumnHeaderTemplate}"/>
+    </Style>
+    
+    <Style x:Key="DataGridRightAlignedColumnHeaderStyle" TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+    </Style>
+
+    <Style x:Key="DataGridLeftAlignedColumnHeaderStyle" TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    </Style>
+
+    <Style x:Key="DataGridCenterAlignedColumnHeaderStyle" TargetType="DataGridColumnHeader" BasedOn="{StaticResource DataGridColumnHeaderStyle}">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="DataGridRightAlignedCellStyle">
+        <Setter Property="Control.HorizontalAlignment" Value="Right"/>
     </Style>
 
     <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
@@ -75,7 +90,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridCell">
-                    <Border Background="Transparent" Padding="3">
+                    <Border Background="Transparent" Padding="4">
                         <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="{TemplateBinding HorizontalAlignment}"/>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -89,7 +104,7 @@
     </Style>
 
     <ControlTemplate x:Key="DataGridTemplate" TargetType="DataGrid">
-        <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
+        <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
             <ScrollViewer Focusable="false" Name="DG_ScrollViewer">
                 <ScrollViewer.Template>
                     <ControlTemplate TargetType="ScrollViewer">
@@ -127,17 +142,19 @@
     <Style x:Key="DataGridStyle" TargetType="DataGrid">
         <Setter Property="AutoGenerateColumns" Value="False"/>
         <Setter Property="CanUserResizeRows" Value="False"/>
-        <Setter Property="GridLinesVisibility" Value="All"/>
+        <Setter Property="GridLinesVisibility" Value="Vertical"/>
+        <Setter Property="Background" Value="White"/>
         <Setter Property="BorderBrush" Value="LightSkyBlue"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="HeadersVisibility" Value="Column"/>
         <Setter Property="RowBackground" Value="#FEFEFE"/>
+        <Setter Property="Foreground" Value="{StaticResource DefaultForground}"/>
         <Setter Property="AlternatingRowBackground" Value="#F8F8F8"/>
-        <Setter Property="HorizontalGridLinesBrush" Value="LightSkyBlue"/>
-        <Setter Property="VerticalGridLinesBrush" Value="LightSkyBlue"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource DataGridGridLineColor}"/>
+        <Setter Property="VerticalGridLinesBrush" Value="{StaticResource DataGridGridLineColor}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
-        <Setter Property="ColumnHeaderStyle" Value="{StaticResource DataGridColumnHeaderStyle}"/>
+        <Setter Property="ColumnHeaderStyle" Value="{StaticResource DataGridLeftAlignedColumnHeaderStyle}"/>
         <Setter Property="RowStyle" Value="{StaticResource DataGridRowStyle}"/>
         <Setter Property="CellStyle" Value="{StaticResource DataGridCellStyle}"/>
         <Setter Property="Template" Value="{StaticResource DataGridTemplate}"/>

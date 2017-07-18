@@ -7,16 +7,28 @@ namespace boss.client.win
     {
         public string code { get; set; }
         public string name { get; set; }
-        public QueryParameter[] parameters { get; set; }
+        public Parameter[] parameters { get; set; }
         public Field[] fields { get; set; }
+        public IdentityField[] identityFields { get; set; }
 
-        public IReadOnlyList<Field> GetDisplayFields()
+        public IEnumerable<Field> GetDisplayFields()
         {
-            return fields.Where(x => !x.name.StartsWith("_")).ToList();
+            var result = new[] { new Field { name = "rowNumber", type = FieldTypes.Number, description = "序号" } }; // TODO: i18n
+            return result.Concat(fields?.Where(x => !x.name.StartsWith("_")).ToList() ?? new List<Field>()).ToList();
+        }
+
+        public IEnumerable<IdentityField> GetIdentityFields()
+        {
+            return identityFields ?? new IdentityField[0];
+        }
+
+        public IEnumerable<IdentityField> GetPrimaryIdentityFields()
+        {
+            return GetIdentityFields().Where(x => x.primary).ToList();
         }
     }
 
-    public class QueryParameter
+    public class Parameter
     {
         public string name { get; set; }
         public string type { get; set; }

@@ -16,5 +16,15 @@ namespace boss.client.win
             totalPages = (int)(totalNumbers / size + (totalNumbers % size == 0 ? 0 : 1));
             page = pagination.page < int.MaxValue ? Math.Min(pagination.page + 1, totalPages) : totalPages;
         }
+
+        public void ResolveRowNumbers()
+        {
+            if (data == null) return;
+            for (var i = 0; i < data.Length; ++i)
+            {
+                dynamic item = data[i];
+                item.rowNumber = (page - 1) * size + i + 1;
+            }
+        }
     }
 }

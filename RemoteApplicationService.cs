@@ -29,7 +29,7 @@ namespace boss.client.win
                     Items = new []
                     {
                         new MenuItem { Name = "销售单", Code = "010001", Items = new MenuItem [0], Type = "02"},
-                        new MenuItem { Name = "销售单查询", Code = "010002", Items = new MenuItem [0], Type = "03"},
+                        new MenuItem { Name = "销售单查询", Code = "010001", Items = new MenuItem [0], Type = "03"},
                         new MenuItem { Name = "销售单明细查询", Code = "010003", Items = new MenuItem [0], Type = "03"}
                     }
                 },
@@ -41,8 +41,9 @@ namespace boss.client.win
                     Items = new []
                     {
                         new MenuItem { Name = "入账清单", Code = "020001", Items = new MenuItem [0], Type = "02"},
-                        new MenuItem { Name = "入账清单查询", Code = "020002", Items = new MenuItem [0], Type = "03"},
-                        new MenuItem { Name = "入账清单明细查询", Code = "020003", Items = new MenuItem [0], Type = "03"}
+                        new MenuItem { Name = "入账清单查询", Code = "020001", Items = new MenuItem [0], Type = "03"},
+                        new MenuItem { Name = "款项信息查询", Code = "020002", Items = new MenuItem [0], Type = "03"},
+                        new MenuItem { Name = "待处理款项查询", Code = "020003", Items = new MenuItem [0], Type = "03"}
                     }
                 },
                 new MenuItem
@@ -57,7 +58,13 @@ namespace boss.client.win
                     Code = "050000",
                     Name = "服务管理",
                     Type = "01",
-                    Items = Enumerable.Range(1, 11).Select(i => new MenuItem {Name = $"菜单项 - {i:00}"})
+                    Items = new []
+                    {
+                        new MenuItem { Name = "服务变更凭证", Code = "040001", Items = new MenuItem [0], Type = "02"},
+                        new MenuItem { Name = "服务变更凭证查询", Code = "040001", Items = new MenuItem [0], Type = "03"},
+                        new MenuItem { Name = "服务变更明细查询", Code = "040003", Items = new MenuItem [0], Type = "03"},
+                        new MenuItem { Name = "客户服务查询", Code = "040002", Items = new MenuItem [0], Type = "03"}
+                    }
                 },
                 new MenuItem
                 {

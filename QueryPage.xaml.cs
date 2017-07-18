@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace boss.client.win
@@ -11,7 +14,7 @@ namespace boss.client.win
         public QueryPage(object parameter)
         {
             var queryCode = ((dynamic)parameter).queryCode as string;
-            viewModel = new QueryViewModel() { QueryCode = queryCode };
+            viewModel = new QueryViewModel(queryCode);
             DataContext = viewModel;
             InitializeComponent();
             inputForm.DataContext = viewModel;
@@ -32,6 +35,16 @@ namespace boss.client.win
             }
         }
 
+        private void QueryPage_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            InitializeFocus();
+        }
+
+        private void InitializeFocus()
+        {
+            viewModel.Items.OfType<TextBox>().FirstOrDefault()?.Focus();
+        }
+
         private void CommandBinding_OnRefreshExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             viewModel.Query();
@@ -39,12 +52,12 @@ namespace boss.client.win
 
         private void CommandBinding_OnResetExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            viewModel.Clear();
         }
 
         private void CommandBinding_OnExportExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            viewModel.Export();
         }
     }
 }
